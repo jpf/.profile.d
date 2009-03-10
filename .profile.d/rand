@@ -1,0 +1,3 @@
+rand() { 
+       dd if=/dev/urandom bs=1 count=128 2> /dev/null | md5sum | awk '{print $1}'
+       }
