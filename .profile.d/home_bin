@@ -1,0 +1,4 @@
+HOMEBIN="$HOME/bin"
+if [ -d $HOMEBIN ]; then
+     PATH="$HOMEBIN:$PATH"
+fi

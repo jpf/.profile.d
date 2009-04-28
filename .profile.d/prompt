@@ -9,9 +9,15 @@ function rv {
   if [ $rv -ne 0 ]; then echo "($rv) "; fi
 }
 
+function dashes {
+  s=`printf "%*s" $COLUMNS`; 
+  echo "${s// /-}"
+}
 
-PS1='`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\$ '
+PS1='`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
 
+#touch ~
+#PS1="`dashes`\n`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ "
 
 # full line?
 # hostname, colored using hash of hostname
