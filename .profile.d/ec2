@@ -1,0 +1,8 @@
+# export EC2_HOME=
+# export EC2_PRIVATE_KEY=
+# export EC2_CERT=
+# 
+# # This is the JAVA_HOME for Mac OS X...
+# 
+# export JAVA_HOME='/Library/Java/Home'
+# export PATH="$PATH:$EC2_HOME/bin"

@@ -1,5 +1,5 @@
 function gb {
-  branch=$(git-symbolic-ref HEAD 2> /dev/null || false)
+  branch=$(git symbolic-ref HEAD 2> /dev/null || false)
   branch=${branch##*/}
   if [[ $branch ]]; then echo " [$branch]"; fi
 }
