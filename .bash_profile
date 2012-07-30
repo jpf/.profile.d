@@ -1,1 +1,1 @@
-for conf in ~/.profile.d/*; do . $conf; done
+for conf in ~/joels-configs/.profile.d/*; do . $conf; done
