@@ -1,0 +1,7 @@
+alias flip="tr '\r' '\n'"
+alias ll="ls -alG"
+
+# This only works on Mac OS X
+if [ "$(uname)" = "Darwin" ]; then
+   alias router="(ipconfig getpacket en0; ipconfig getpacket en1) | grep router | egrep -o '[0-9\.]+'"
+fi
