@@ -5,3 +5,7 @@ alias ll="ls -alG"
 if [ "$(uname)" = "Darwin" ]; then
    alias router="(ipconfig getpacket en0; ipconfig getpacket en1) | grep router | egrep -o '[0-9\.]+'"
 fi
+
+if [ -f `which python` ]; then
+   alias jsonpp='python -m json.tool'
+fi
