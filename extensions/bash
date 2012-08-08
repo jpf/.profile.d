@@ -19,6 +19,9 @@ ulimit -S -c 0
 : ${LC_CTYPE:="en_US.UTF-8"}
 : ${LC_ALL:="en_US.UTF-8"}
 
+# save all the histories 
+HISTSIZE=1000000000
+
 # when completing file names, ignore: python bytecode, "*~" backup files
 FIGNORE=".pyc:~"
 
