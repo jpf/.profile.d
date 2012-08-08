@@ -1,3 +1,4 @@
+alias up="source ~/.bash_profile"
 alias flip="tr '\r' '\n'"
 alias ll="ls -alG"
 
@@ -9,3 +10,9 @@ fi
 if [ -f `which python` ]; then
    alias jsonpp='python -m json.tool'
 fi
+
+if [ -f `which curl` ]; then
+   alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
+fi
+
+alias ff="find . -type f"
