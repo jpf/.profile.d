@@ -2,10 +2,7 @@ alias up="source ~/.bash_profile"
 alias flip="tr '\r' '\n'"
 alias ll="ls -alG"
 
-# This only works on Mac OS X
-if [ "$(uname)" = "Darwin" ]; then
-   alias router="(ipconfig getpacket en0; ipconfig getpacket en1) | grep router | egrep -o '[0-9\.]+'"
-fi
+alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
 
 if [ -f `which python` ]; then
    alias jsonpp='python -m json.tool'
