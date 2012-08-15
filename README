@@ -1,30 +1,5 @@
- This is a readme.
+Rather than store all of my configuration settings in a huge file. 
 
- More than just a blank slate, this is where the purpose of my project is described.
- 
- At this point, the project is still not described.
+I decided to store each "group" of settings in their own file.
 
- Still waiting.
-
-# this is a comment
-
- These are dot files. As such, their names begin with "dot".
-
- 
-INSTALLATION
-
- *  Download all inclosed files.
- 2. Print out files on greenbar, 9 edge first
- *  Take picture of files on wooden table
- *  Use gocr to convert these files back into text
- *  goto step 3
- *  Just kidding, there was no step three.
- *  Copy these files into your home directory, overriding any existing files with the same names
- *  DO NOT attempt to view the contents of any files being overwritten, or the new versions from this repository.  THat would spoil the surprise!
- *  Reboot your computer and (very important) unplug and reseat the third upstream ethernet jack any packets would take heading towards my secret router 224.0.0.27. If you are at a public wifi location, you may have to ask politely in order to effect this.
- *  You're done! Enjoy!
-
-BUGS
-
- * none.
-
+Use "setup.sh" change to this configuration file setup.
