@@ -1,6 +1,7 @@
 alias up="source ~/.bash_profile"
 alias flip="tr '\r' '\n'"
 alias ll="ls -alG"
+alias pp="ping 4.2.2.2"
 
 alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
 
