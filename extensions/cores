@@ -12,3 +12,5 @@ elif [ -x /usr/sbin/sysctl ];
 then
     CORES=`sysctl -n hw.ncpu`
 fi
+
+alias makep="make -j${CORES}"
