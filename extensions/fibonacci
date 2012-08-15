@@ -1,0 +1,20 @@
+#!/bin/bash
+
+fibonacci() {
+  case $1 in
+    0) printf "$1";;
+    1) printf "$1";;
+    *) printf "$(($(fibonacci $(($1-2)))+$(fibonacci $(($1-1)))))";;
+  esac
+}
+
+count=10
+
+echo "Hi $(whoami), enjoy the first $count numbers of the Fibonacci sequence:"
+
+for ((i=0; i<$count; i++))
+do
+  echo -n "$(fibonacci $i) "
+done
+
+echo
