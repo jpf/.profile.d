@@ -1,0 +1,14 @@
+# -*- shell-script -*-
+# how many cores do we have? Useful for "make -j${CORES} "
+
+# start with a safe guess.
+CORES=1
+
+if [ -f /proc/cpuinfo ];
+then
+    # http://www.howtogeek.com/howto/ubuntu/display-number-of-processors-on-linux/
+    CORES=`grep -c ^processor /proc/cpuinfo`
+elif [ -x /usr/sbin/sysctl ];
+then
+    CORES=`sysctl -n hw.ncpu`
+fi

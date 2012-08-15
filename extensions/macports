@@ -1,0 +1,6 @@
+# if macports installed, add it early
+if [ -d /opt/local/bin ];
+then
+        export PATH=$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
+        export MANPATH=/usr/local/man:/opt/local/share/man:/opt/local/share/man:$MANPATH
+fi
