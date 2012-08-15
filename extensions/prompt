@@ -1,3 +1,4 @@
+# -*- shell-script -*-
 function gb {
   branch=$(git symbolic-ref HEAD 2> /dev/null || false)
   branch=${branch##*/}
@@ -14,7 +15,7 @@ function dashes {
   echo "${s// /-}"
 }
 
-PS1='`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
+PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
 
 #touch ~
 #PS1="`dashes`\n`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ "
