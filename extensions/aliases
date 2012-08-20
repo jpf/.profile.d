@@ -14,3 +14,5 @@ if [ -f `which curl` ]; then
 fi
 
 alias ff="find . -type f"
+alias ssh0="SSH_AUTH_SOCK= ssh"
+
