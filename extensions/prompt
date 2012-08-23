@@ -1,8 +1,24 @@
 # -*- shell-script -*-
+
+# print which branch you're on. Now only looks in the "top level" repository directory.
+# also notes which *VS you are using. Good, because I always forget which project is which.
 function gb {
-  branch=$(git symbolic-ref HEAD 2> /dev/null || false)
-  branch=${branch##*/}
-  if [[ $branch ]]; then echo " [$branch]"; fi
+    branch=
+    if [ -d .git ]; # only for top .git directory (not every subdir)
+    then
+        branch=$(git symbolic-ref HEAD 2> /dev/null || false)
+        branch=${branch##*/}
+        if [[ $branch ]]; then echo " [git:$branch]"; fi
+    elif [ -d .svn ]; 
+    then
+        branch=$(svnversion 2> /dev/null || false)
+        if [[ $branch ]]; then echo " [svn:$branch]"; fi
+    elif [ -d .hg ];
+    then
+        branch=$(hg branch 2> /dev/null || false)
+        echo " [hg:$branch]";
+    elif [ -d CVS ]; then echo " [cvs]"; #echo " ...(Sorry!)";
+    elif [ -d .bzr ]; then echo " [bzr]"; fi
 }
 
 function rv {
