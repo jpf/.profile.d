@@ -5,11 +5,11 @@ alias pp="ping 4.2.2.2"
 
 alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
 
-if [ -f `which python` ]; then
+if [ -x `which python 2>/dev/null` ]; then
    alias jsonpp='python -m json.tool'
 fi
 
-if [ -f `which curl` ]; then
+if [ -x `which curl` 2>/dev/null ]; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
 fi
 
