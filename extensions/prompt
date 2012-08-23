@@ -31,7 +31,13 @@ function dashes {
   echo "${s// /-}"
 }
 
-PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
+# pre tag
+PS1_PRE=""
+if [[ $SSH_CLIENT ]]; then PS1_PRE="${PS1_PRE}!"; fi       #   ! for  SSH
+if [ "$TERM" = "screen" ]; then PS1_PRE="${PS1_PRE}S"; fi  #   S for screen
+if [[ $PS1_PRE ]]; then PS1_PRE="${PS1_PRE} "; fi          #   space for comfort
+
+PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}'${PS1_PRE}'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
 
 #touch ~
 #PS1="`dashes`\n`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ "
