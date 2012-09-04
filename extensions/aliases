@@ -9,7 +9,7 @@ if [ -x `which python 2>/dev/null` ]; then
    alias jsonpp='python -m json.tool'
 fi
 
-if [ -x `which curl` 2>/dev/null ]; then
+if [ -x `which curl 2>/dev/null` ]; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
 fi
 
