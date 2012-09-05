@@ -1,1 +1,4 @@
-.profile.d/work*
+.DS_Store
+extensions/personal*
+extensions//work*
+*~
