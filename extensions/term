@@ -1,0 +1,35 @@
+#!/bin/sh
+# fix the term type if not supported.
+
+if [[ $TERM ]];
+then
+    if ! clear >/dev/null;
+    then
+        OTERM=$TERM
+        # clear failed - term not known.
+        case $TERM in
+            linux)
+            export TERM=xterm-color
+            ;;
+            xterm-color)
+            export TERM=xterm
+            ;;
+        esac
+        
+        # try again
+        if ! clear >/dev/null;
+        then
+            export TERM=xterm
+            if ! clear >/dev/null;
+            then
+                export TERM=vt100
+                if ! clear >/dev/null;
+                then
+                    echo "Warning: terminal ${OTERM} and even ${TERM} not supported." >&2
+                    # go back to original TERM - something is really wrong.
+                    export TERM=${OTERM}
+                fi
+            fi
+        fi  
+    fi
+fi
