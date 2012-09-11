@@ -11,7 +11,8 @@ function gb {
         if [[ $branch ]]; then echo " [git:$branch]"; fi
     elif [ -d .svn ]; 
     then
-        branch=$(svnversion 2> /dev/null || false)
+        branch="_"
+	#branch=$(svnversion 2> /dev/null || false)
         if [[ $branch ]]; then echo " [svn:$branch]"; fi
     elif [ -d .hg ];
     then
