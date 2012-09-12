@@ -1,0 +1,3 @@
+[submodule "tomorrow-theme"]
+	path = tomorrow-theme
+	url = git@github.com:jpf/tomorrow-theme.git
