@@ -17,3 +17,4 @@ if [ -f `which curl` ]; then
 fi
 
 alias ff="find . -type f"
+alias utc="TZ=UTC date +'%Y-%m-%dT%H:%M:%S%z'"
