@@ -1,3 +1,4 @@
-/extensions/work*
-/*~
-/extensions/*~
+.DS_Store
+extensions/personal*
+extensions//work*
+*~
