@@ -1,0 +1,2 @@
+BIN=`pwd | sed -e 's/extensions/bin/'`
+PATH="$PATH:$BIN"
