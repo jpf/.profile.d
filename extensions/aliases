@@ -14,4 +14,7 @@ if [ -f `which curl` ]; then
 fi
 
 alias ff="find . -type f"
+alias ff0="find . -type f -print0"
 alias utc="TZ=UTC date +'%Y-%m-%dT%H:%M:%S%z'"
+
+alias gc="git clone"
