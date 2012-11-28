@@ -1,2 +1,1 @@
-BIN=`pwd | sed -e 's/extensions/bin/'`
-PATH="$PATH:$BIN"
+PATH="$PATH:~/.profile.d/bin"
