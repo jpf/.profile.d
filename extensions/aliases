@@ -1,4 +1,14 @@
-alias up="source ~/.bash_profile"
+if [ -n "$ZSH_VERSION" ]; then
+    # assume Zsh
+    alias up="source ~/.zshrc"
+elif [ -n "$BASH_VERSION" ]; then
+    # assume Bash
+    alias up="source ~/.bash_profile"
+else
+    # asume something else
+    : # do nothing
+fi
+
 alias flip="tr '\r' '\n'"
 alias ll="ls -alG"
 alias pp="ping 4.2.2.2"
