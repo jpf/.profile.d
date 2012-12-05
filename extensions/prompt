@@ -3,6 +3,12 @@
 #  - hostname, colored using hash of hostname
 #  - compressed ts
 
+function prompt_git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null || false)
+    branch=${branch##*/}
+    if [ ! -z $branch ]; then echo " [$branch]"; fi
+}
+
 if [ -n "$ZSH_VERSION" ]; then
     # assume Zsh
     autoload -U colors && colors
@@ -12,21 +18,12 @@ if [ -n "$ZSH_VERSION" ]; then
       if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
     }
 
-    function prompt_git_branch() {
-	branch=$(git symbolic-ref HEAD | cut -d'/' -f3)
-	if [ ! -z $branch ]; then echo " [$branch]"; fi
-    }
-
     PROMPT="%(?..%{$fg[red]%}[%?]%{$reset_color%} )%{$fg[green]%}%n@%m%{$fg[white]%}:%{$fg[blue]%}%~%{$fg[white]%}$(prompt_git_branch)
 $(prompt_char)%{$reset_color%} "
 
 elif [ -n "$BASH_VERSION" ]; then
     # assume Bash
-    function gb {
-      branch=$(git symbolic-ref HEAD 2> /dev/null || false)
-      branch=${branch##*/}
-      if [ ! -z $branch ]; then echo " [$branch]"; fi
-    }
+    alias gb=prompt_git_branch
     
     function rv {
       rv=$?
