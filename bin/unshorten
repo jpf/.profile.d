@@ -1,0 +1,7 @@
+#!/bin/bash
+# Given a URL, follow all redirects until we get an HTTP 2xx response.
+# Useful for figuring out where a URL on Twitter goes without clicking on it.
+URL=$1
+echo "$URL"
+curl -IL --silent "$URL" | grep Location | grep -o 'http.*'
+
