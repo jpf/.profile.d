@@ -18,8 +18,10 @@ if [ -n "$ZSH_VERSION" ]; then
       if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
     }
 
-    PROMPT="%(?..%{$fg[red]%}[%?]%{$reset_color%} )%{$fg[green]%}%n@%m%{$fg[white]%}:%{$fg[blue]%}%~%{$fg[white]%}$(prompt_git_branch)
-$(prompt_char)%{$reset_color%} "
+    # Via: http://superuser.com/questions/382503/how-can-i-put-a-newline-in-my-zsh-prompt-without-causing-terminal-redraw-issues
+    # TODO: Do the thing that termine does where he uses precmd and postcmd to time execution of a command and growl him after a process completes that took longer than X seconds
+    precmd() { print -rP "%{$fg[green]%}%n@%m%{$fg[white]%}:%{$fg[blue]%}%~%{$fg[white]%}$(prompt_git_branch)%{$reset_color%}" }
+    PROMPT="%(?..%{$fg[red]%}[%?]%{$reset_color%} )$(prompt_char) "
 
 elif [ -n "$BASH_VERSION" ]; then
     # assume Bash
