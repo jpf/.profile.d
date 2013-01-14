@@ -10,5 +10,18 @@ then
     CORES=`grep -c ^processor /proc/cpuinfo`
 elif [ -x /usr/sbin/sysctl ];
 then
+    # mac
     CORES=`sysctl -n hw.ncpu`
+elif [ -x /usr/bin/mpstat ];
+then
+    # aix
+    CORES=`mpstat | sed -n 's%^.*lcpu=\([0-9]*\).*$%\1%p'`
 fi
+
+if [ "$CORES" -lt 1 ];
+then
+    CORES=1
+fi
+
+
+alias makep="make -j${CORES}"
