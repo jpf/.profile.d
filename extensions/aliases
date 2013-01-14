@@ -1,12 +1,19 @@
-# re-load the profile
-alias up="source ~/.bash_profile"
+if [ -n "$ZSH_VERSION" ]; then
+    # assume Zsh
+    alias up="source ~/.zshrc"
+elif [ -n "$BASH_VERSION" ]; then
+    # assume Bash
+    alias up="source ~/.bash_profile"
+else
+    # asume something else
+    : # do nothing
+fi
 
 # cr -> lf
 alias flip="tr '\r' '\n'"
 
 alias ll="ls -alG"
-
-# Did someone delete the Internet?
+alias l="ls -G"
 alias pp="ping 4.2.2.2"
 
 # which router am I using?
@@ -21,12 +28,12 @@ if [ -x `which curl 2>/dev/null` ]; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
 fi
 
-# find files
-alias ff="find . -type f"
-
 # ssh (ignore the agent)
 alias ssh0="SSH_AUTH_SOCK= ssh"
 
-# print UTC time
+# find files
+alias ff="find . -type f"
+alias ff0="find . -type f -print0"
 alias utc="TZ=UTC date +'%Y-%m-%dT%H:%M:%S%z'"
 
+alias gc="git clone"

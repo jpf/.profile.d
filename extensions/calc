@@ -1,0 +1,2 @@
+# http://www.shell-fu.org/lister.php?id=216
+function calc { echo "${1}"|bc -l; }

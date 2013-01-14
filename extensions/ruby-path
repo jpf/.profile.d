@@ -1,0 +1,14 @@
+# -*- shell-script -*-
+
+# if ruby is a symlink, add its directory to the end of the path.
+if [ -x `which ruby 2>/dev/null` -a -s `which ruby` ];
+then
+        export RUBY_PATH=`which ruby`
+        export RUBY_LINK=`readlink ${RUBY_PATH}`
+        
+        # for homebrew - add ruby's link target path to the path
+        if echo ${RUBY_LINK} | grep -qs '^\.\./Cellar/ruby';
+        then
+            export PATH=$PATH:`dirname ${RUBY_PATH}`/`dirname ${RUBY_LINK}`
+        fi
+fi

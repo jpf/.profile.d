@@ -1,19 +1,25 @@
 # -*- shell-script -*-
 
+# Ideas:
+#  - full line prompt?
+#  - hostname, colored using hash of hostname
+#  - compressed ts
+
+
 # print which branch you're on. Now only looks in the "top level" repository directory.
 # also notes which *VS you are using. Good, because I always forget which project is which.
-function gb {
+function prompt_vc_branch {
     branch=
     if [ -d .git ]; # only for top .git directory (not every subdir)
     then
         branch=$(git symbolic-ref HEAD 2> /dev/null || false)
         branch=${branch##*/}
-        if [[ $branch ]]; then echo " [git:$branch]"; fi
+        if [ $branch ]; then echo " [git:$branch]"; fi
     elif [ -d .svn ]; 
     then
         branch="_"
 	#branch=$(svnversion 2> /dev/null || false)
-        if [[ $branch ]]; then echo " [svn:$branch]"; fi
+        if [ $branch ]; then echo " [svn:$branch]"; fi
     elif [ -d .hg ];
     then
         branch=$(hg branch 2> /dev/null || false)
@@ -22,27 +28,47 @@ function gb {
     elif [ -d .bzr ]; then echo " [bzr]"; fi
 }
 
-function rv {
-  rv=$?
-  if [ $rv -ne 0 ]; then echo "($rv) "; fi
-}
+if [ -n "$ZSH_VERSION" ];
+then
+    # assume Zsh
+    autoload -U colors && colors
 
-function dashes {
-  s=`printf "%*s" $COLUMNS`; 
-  echo "${s// /-}"
-}
+    # From: https://github.com/robbyrussell/oh-my-zsh/pull/409/files
+    function prompt_char {
+      if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
+    }
 
-# pre tag
-PS1_PRE=""
-if [[ $SSH_CLIENT ]]; then PS1_PRE="${PS1_PRE}!"; fi       #   ! for  SSH
-if [ "$TERM" = "screen" ]; then PS1_PRE="${PS1_PRE}S"; fi  #   S for screen
-if [[ $PS1_PRE ]]; then PS1_PRE="${PS1_PRE} "; fi          #   space for comfort
+    # Via: http://superuser.com/questions/382503/how-can-i-put-a-newline-in-my-zsh-prompt-without-causing-terminal-redraw-issues
+    # TODO: Do the thing that termine does where he uses precmd and postcmd to time execution of a command and growl him after a process completes that took longer than X seconds
+    # Had to change precmd to a 'function' or bash chokes. hope thats OK. Seems to load in zsh for me. -srl
+    function precmd() { 
+        print -rP "%{$fg[green]%}%n@%m%{$fg[white]%}:%{$fg[blue]%}%~%{$fg[white]%}$(prompt_vc_branch)%{$reset_color%}" 
+    }
+    PROMPT="%(?..%{$fg[red]%}[%?]%{$reset_color%} )$(prompt_char) "
 
-PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}'${PS1_PRE}'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
 
-#touch ~
-#PS1="`dashes`\n`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ "
+elif [ -n "$BASH_VERSION" ];
+then
+    PS1_PRE=""
+    if [ $SSH_CLIENT ]; then PS1_PRE="${PS1_PRE}!"; fi       #   ! for  SSH
+    if [ "$TERM" = "screen" ]; then PS1_PRE="${PS1_PRE}S"; fi  #   S for screen
+    if [ $PS1_PRE ]; then PS1_PRE="${PS1_PRE} "; fi          #   space for comfort
 
-# full line?
-# hostname, colored using hash of hostname
-# compressed ts
+    
+    function rv {
+      rv=$?
+      if [ $rv -ne 0 ]; then echo "($rv) "; fi
+    }
+    
+    # function dashes {
+    #   s=`printf "%*s" $COLUMNS`; 
+    #   echo "${s// /-}"
+    # }
+    
+    PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}'${PS1_PRE}'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`prompt_vc_branch`\n\$ '
+##    PS1='`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
+##    #PS1="`dashes`\n`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ "
+else
+    # asume something else
+    :
+fi
