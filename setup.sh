@@ -21,5 +21,6 @@ if [ -f ~/.zshrc ]; then
     echo "You already have a .zshrc. Backup that file and then run this script again"
 else
     ln -s $CWD/.zshrc .
+    ln -s $CWD/.oh-my-zsh .
     echo "Installed .zshrc"
 fi
