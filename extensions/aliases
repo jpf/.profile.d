@@ -1,18 +1,37 @@
-alias up="source ~/.bash_profile"
+if [ -n "$ZSH_VERSION" ]; then
+    # assume Zsh
+    alias up="source ~/.zshrc"
+elif [ -n "$BASH_VERSION" ]; then
+    # assume Bash
+    alias up="source ~/.bash_profile"
+else
+    # asume something else
+    : # do nothing
+fi
+
+# cr -> lf
 alias flip="tr '\r' '\n'"
+
 alias ll="ls -alG"
+alias l="ls -G"
 alias pp="ping 4.2.2.2"
 
+# which router am I using?
 alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
 
-if [ -f `which python` ]; then
+if [ -x `which python 2>/dev/null` ]; then
    alias jsonpp='python -m json.tool'
 fi
 
-if [ -f `which curl` ]; then
+# what is my IP?
+if [ -x `which curl 2>/dev/null` ]; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
 fi
 
+# ssh (ignore the agent)
+alias ssh0="SSH_AUTH_SOCK= ssh"
+
+# find files
 alias ff="find . -type f"
 alias ff0="find . -type f -print0"
 alias utc="TZ=UTC date +'%Y-%m-%dT%H:%M:%S%z'"

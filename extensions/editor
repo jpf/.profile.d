@@ -1,1 +1,2 @@
-if [ -f `which emacs` ]; then export EDITOR=`which emacs`; fi
+# Don't use full path to emacs, in case a preferred one shows up on PATH later
+if [ -x `which emacs 2>/dev/null` ]; then export EDITOR=emacs; fi
