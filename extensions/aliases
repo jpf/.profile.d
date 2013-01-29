@@ -1,17 +1,6 @@
-if [ -n "$ZSH_VERSION" ]; then
-    # assume Zsh
-    alias up="source ~/.zshrc"
-elif [ -n "$BASH_VERSION" ]; then
-    # assume Bash
-    alias up="source ~/.bash_profile"
-else
-    # asume something else
-    : # do nothing
-fi
-
+alias up="source ~/.bash_profile"
 alias flip="tr '\r' '\n'"
 alias ll="ls -alG"
-alias l="ls -G"
 alias pp="ping 4.2.2.2"
 
 alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
