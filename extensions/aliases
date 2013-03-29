@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 if [ -n "$ZSH_VERSION" ]; then
     # assume Zsh
     alias up="source ~/.zshrc"
@@ -19,12 +21,12 @@ alias pp="ping 4.2.2.2"
 # which router am I using?
 alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
 
-if [ -x `which python 2>/dev/null` ]; then
+if [ command -v python 2>/dev/null ]; then
    alias jsonpp='python -m json.tool'
 fi
 
 # what is my IP?
-if [ -x `which curl 2>/dev/null` ]; then
+if [ command -v python ]; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
 fi
 

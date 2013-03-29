@@ -50,7 +50,7 @@ then
 elif [ -n "$BASH_VERSION" ];
 then
     PS1_PRE=""
-    if [ $SSH_CLIENT ]; then PS1_PRE="${PS1_PRE}!"; fi       #   ! for  SSH
+    if [ "$SSH_CLIENT" ]; then PS1_PRE="${PS1_PRE}!"; fi       #   ! for  SSH
     if [ "$TERM" = "screen" ]; then PS1_PRE="${PS1_PRE}S"; fi  #   S for screen
     if [ $PS1_PRE ]; then PS1_PRE="${PS1_PRE} "; fi          #   space for comfort
 
