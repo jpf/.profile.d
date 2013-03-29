@@ -4,3 +4,9 @@ then
         export PATH=$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:$PATH
         export MANPATH=/usr/local/man:/opt/local/share/man:/opt/local/share/man:$MANPATH
 fi
+
+# if X11 pkgconfig is available, add it
+if [ -d /opt/X11/lib/pkgconfig ];
+then
+        export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/opt/X11/lib/pkgconfig
+fi
