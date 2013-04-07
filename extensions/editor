@@ -1,2 +1,3 @@
+# -*- shell-script -*-
 # Don't use full path to emacs, in case a preferred one shows up on PATH later
-if [ -x `which emacs 2>/dev/null` ]; then export EDITOR=emacs; fi
+if [ command -v emacs ]; then export EDITOR=emacs; fi

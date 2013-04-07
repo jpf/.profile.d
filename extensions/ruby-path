@@ -1,7 +1,7 @@
 # -*- shell-script -*-
 
 # if ruby is a symlink, add its directory to the end of the path.
-if [ -x `which ruby 2>/dev/null` -a -s `which ruby` ];
+if command -v ruby 2>/dev/null;
 then
         export RUBY_PATH=`which ruby`
         export RUBY_LINK=`readlink ${RUBY_PATH}`
