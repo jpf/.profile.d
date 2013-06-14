@@ -19,7 +19,7 @@ alias l="ls -G"
 alias pp="ping 4.2.2.2"
 
 # which router am I using?
-alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
+alias router='netstat -rn|egrep "^(0.0.0.0|default)"|awk "{print \$2}"'
 
 if command -v python > /dev/null 2>&1; then
    alias jsonpp='python -m json.tool'
