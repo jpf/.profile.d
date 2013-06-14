@@ -21,12 +21,12 @@ alias pp="ping 4.2.2.2"
 # which router am I using?
 alias router="netstat -rn|egrep '^(0.0.0.0|default)'|awk '{print $2}'"
 
-if [ command -v python 2>/dev/null ]; then
+if command -v python > /dev/null 2>&1; then
    alias jsonpp='python -m json.tool'
 fi
 
 # what is my IP?
-if [ command -v python ]; then
+if command -v python > /dev/null 2>&1; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
 fi
 
