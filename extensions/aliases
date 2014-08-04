@@ -25,6 +25,10 @@ if command -v python > /dev/null 2>&1; then
    alias jsonpp='python -m json.tool'
 fi
 
+if command -v xmlstarlet > /dev/null 2>&1; then
+   alias xmlpp='xmlstarlet fo'
+fi
+
 # what is my IP?
 if command -v python > /dev/null 2>&1; then
    alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
