@@ -1,0 +1,7 @@
+# -*- sh -*-
+
+# mod time of a file, in epoch-seconds
+# TODO: LINUX ONLY.  Should be “stat -f '%m'” on mac
+function mtime { stat -c '%Y' "$1"; }
+# delta mod-time of file, in epoch-seconds
+function mtime_diff { expr `mtime $2` - `mtime $1`; }
