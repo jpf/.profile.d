@@ -45,4 +45,4 @@ alias utc="TZ=UTC date +'%Y-%m-%dT%H:%M:%S%z'"
 alias gc="git clone"
 
 # "clean" text
-alias c="pbpaste|pbcopy"
+alias c="pbpaste -Prefer txt | pbcopy; pbpaste; echo"
