@@ -14,7 +14,12 @@ fi
 # cr -> lf
 alias flip="tr '\r' '\n'"
 
-alias ll="ls -alG"
+# -G      Enable colorized output. 
+# -a      Include directory entries whose names begin with a dot (.).
+# -l      List in long format. 
+# -r      Reverse the order of the sort
+# -t      Sort by time modified (most recently modified first)
+alias ll="ls -Galrt"
 alias l="ls -G"
 alias pp="ping 4.2.2.2"
 
