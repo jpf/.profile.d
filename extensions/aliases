@@ -36,7 +36,7 @@ fi
 
 # what is my IP?
 if command -v python > /dev/null 2>&1; then
-   alias wimi="(curl -s http://api.externalip.net/ip/; echo)"
+   alias wimi='curl --silent http://httpbin.org/ip | grep origin | cut -d \" -f 4'
 fi
 
 # ssh (ignore the agent)
