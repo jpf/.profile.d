@@ -3,5 +3,5 @@
 # Useful for figuring out where a URL on Twitter goes without clicking on it.
 URL=$1
 echo "$URL"
-curl -IL --silent "$URL" | grep Location | grep -o 'http.*'
+curl -IL --silent "$URL" | grep -i Location | grep -o 'http.*'
 
