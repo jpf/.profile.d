@@ -1,0 +1,7 @@
+
+# Homebrew's location. YMMV
+if [ -d "/usr/local/opt/ccache/libexec" ];
+then
+        PATH="/usr/local/opt/ccache/libexec:${PATH}"
+        export PATH
+fi
