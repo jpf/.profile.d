@@ -51,3 +51,6 @@ alias gc="git clone"
 
 # "clean" text
 alias c="pbpaste -Prefer txt | pbcopy; pbpaste; echo"
+
+# [e]macs [c]lean
+alias ec="find . -type f -iname '*~' -delete"
