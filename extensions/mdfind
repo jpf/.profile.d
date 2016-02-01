@@ -1,0 +1,4 @@
+# use mdfind on mac
+if command -v mdfind > /dev/null 2>&1; then
+    alias locate='mdfind -name'
+fi
