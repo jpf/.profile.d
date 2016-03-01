@@ -54,3 +54,6 @@ alias c="pbpaste -Prefer txt | pbcopy; pbpaste; echo"
 
 # [e]macs [c]lean
 alias ec="find . -type f -iname '*~' -delete"
+
+# What's the water level in California reservoirs?
+alias water=`curl http://cdec.water.ca.gov/cgi-progs/reservoirs/RES | grep 'Group Average' | cut -d '>' -f 25 | cut -d '<' -f 1`
