@@ -1,0 +1,10 @@
+if [ -d "/usr/local/opt/go/libexec/bin" ];
+then
+	export PATH="/usr/local/opt/go/libexec/bin:$PATH"
+fi
+
+if [ -d "${HOME}/.gopath" ];
+then
+        export GOPATH="${HOME}/.gopath"
+fi
+
