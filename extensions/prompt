@@ -11,14 +11,14 @@
 function prompt_vc_branch {
     if command -v nvm 2>&1 >/dev/null && test -f package.json;
     then
-        echo -n ' @'$(jq '.version'  package.json)
+        echo -n ' ⬡ '$(jq -r '.version'  package.json)
     fi
     branch=
     if [ -d .git ]; # only for top .git directory (not every subdir)
     then
         branch=$(git symbolic-ref HEAD 2> /dev/null || false)
         branch=${branch##*/}
-        if [ $branch ]; then echo " [git:$branch]"; fi
+        if [ $branch ]; then echo " [git⫢$branch]"; fi
     elif [ -d .svn ]; 
     then
         branch="_"
@@ -41,7 +41,7 @@ then
     function prompt_char {
       if [ $UID -eq 0 ]; then echo "#"; else echo $; fi
     }
-
+    
     # Via: http://superuser.com/questions/382503/how-can-i-put-a-newline-in-my-zsh-prompt-without-causing-terminal-redraw-issues
     # TODO: Do the thing that termine does where he uses precmd and postcmd to time execution of a command and growl him after a process completes that took longer than X seconds
     # Had to change precmd to a 'function' or bash chokes. hope thats OK. Seems to load in zsh for me. -srl
