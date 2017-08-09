@@ -11,7 +11,7 @@
 function prompt_vc_branch {
     if command -v nvm 2>&1 >/dev/null && test -f package.json;
     then
-        echo -n ' '$(node -e "var v=require('./package.json');console.log(v.name+'@'+v.version);")'@'$(nvm version)
+        echo -n ' @'$(jq '.version'  package.json)
     fi
     branch=
     if [ -d .git ]; # only for top .git directory (not every subdir)
