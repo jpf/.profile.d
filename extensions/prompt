@@ -9,6 +9,10 @@
 # print which branch you're on. Now only looks in the "top level" repository directory.
 # also notes which *VS you are using. Good, because I always forget which project is which.
 function prompt_vc_branch {
+    if command -v nvm 2>&1 >/dev/null && test -f package.json;
+    then
+        echo -n ' '$(node -e "var v=require('./package.json');console.log(v.name+'@'+v.version);")'@'$(nvm version)
+    fi
     branch=
     if [ -d .git ]; # only for top .git directory (not every subdir)
     then
@@ -50,8 +54,8 @@ then
 elif [ -n "$BASH_VERSION" ];
 then
     PS1_PRE=""
-    if [ "$SSH_CLIENT" ]; then PS1_PRE="${PS1_PRE}!"; fi       #   ! for  SSH
-    if [ "$TERM" = "screen" ]; then PS1_PRE="${PS1_PRE}S"; fi  #   S for screen
+    if [ "$SSH_CLIENT" ]; then PS1_PRE="${PS1_PRE}🐚"; fi       #   ! for  SSH
+    if [ "$TERM" = "screen" ]; then PS1_PRE="${PS1_PRE}📺"; fi  #   S for screen
     if [ $PS1_PRE ]; then PS1_PRE="${PS1_PRE} "; fi          #   space for comfort
 
     
@@ -65,7 +69,7 @@ then
     #   echo "${s// /-}"
     # }
     
-    PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}'${PS1_PRE}'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`prompt_vc_branch`\n\$ '
+    PS1='\[\033[01;41m\]`rv`\[\033[00m\]${debian_chroot:+($debian_chroot)}'${PS1_PRE}'\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[38;5;22m\]`prompt_vc_branch`\[\033[00m\]\n\$ '
 ##    PS1='`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ '
 ##    #PS1="`dashes`\n`rv`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]`gb`\n\$ "
 else
