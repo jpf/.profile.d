@@ -1,0 +1,3 @@
+source ~/.profile.d/history/history.sh
+
+alias hh="open https://github.com/autochthe/history#usage"
