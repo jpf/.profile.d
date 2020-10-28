@@ -1,26 +1,36 @@
-preexec_time="0"
+if command -v terminal-notifier 2>&1 >/dev/null; then
 
-preexec() {
-    preexec_time=`date +%s`;
-    preexec_cmd=$1;
-}
+  # https://github.com/julienXX/terminal-notifier/issues/115
+  reattach_cmd=""
+  if command -v reattach-to-user-namespace 2>&1 >/dev/null; then
+      reattach_cmd="reattach-to-user-namespace"
+  fi
 
-precmd() {
-    if [ $preexec_time -eq 0 ]; then
-	return;
-    fi
-    time_now=`date +%s`;
-    diff=`expr $time_now - $preexec_time`
-    notify="0"
-    
-    if [ $diff -gt 2 ]; then
-       notify="1"
-    fi
-    # Do not trigger if "less" is in the preexec_cmd
-    if [[ $preexec_cmd == *"less"* ]]; then
-       notify="0"
-    fi
-    if [ $notify -eq "1" ]; then
-	terminal-notifier -message "$preexec_cmd" -title "Completed after ${diff} seconds"
-    fi
-}
+  preexec_time="0"
+  
+  preexec() {
+      preexec_time=`date +%s`;
+      preexec_cmd=$1;
+  }
+  
+  precmd() {
+      if [ $preexec_time -eq 0 ]; then
+  	return;
+      fi
+      time_now=`date +%s`;
+      diff=`expr $time_now - $preexec_time`
+      notify="0"
+      
+      if [ $diff -gt 2 ]; then
+         notify="1"
+      fi
+      # Do not trigger if "less" is in the preexec_cmd
+      if [[ $preexec_cmd == *"less"* ]]; then
+         notify="0"
+      fi
+      if [ $notify -eq "1" ]; then
+  	"$reattach_cmd" terminal-notifier -message "$preexec_cmd" -title "Completed after ${diff} seconds"
+      fi
+  }
+
+fi

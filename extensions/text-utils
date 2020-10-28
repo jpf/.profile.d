@@ -1,0 +1,6 @@
+# -*- sh -*-
+
+# http://stackoverflow.com/a/454579/185799
+# diff two strings. Good for comparing hashes. Try: argdiff a b ; argdiff a a
+function argdiff { cmp -bl <(echo -n "$1") <(echo -n "$2") &&
+ echo `tput smso` IDENTICAL `tput rmso`; }

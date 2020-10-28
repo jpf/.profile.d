@@ -1,0 +1,14 @@
+if ! command -v go > /dev/null 2>&1; then
+        if [ -d "/usr/local/opt/go/libexec/bin" ];
+        then
+                export PATH="/usr/local/opt/go/libexec/bin:$PATH"
+        fi
+fi
+
+
+if [ -d "${HOME}/.gopath" ];
+then
+        export GOPATH="${HOME}/.gopath"
+        export PATH="${GOPATH}/bin:$PATH"
+fi
+

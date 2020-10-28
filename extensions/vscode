@@ -1,0 +1,10 @@
+# from https://code.visualstudio.com/docs/setup
+if [ -d "/Applications/Visual Studio Code - Insiders.app" -o -d "${HOME}/Applications/Visual Studio Code - Insiders.app" ];
+then
+        # https://github.com/Microsoft/vscode-docs/blob/master/release-notes/latest.md#enabling-salsa
+        export VSCODE_TSJS=1
+	code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCodeInsiders" --args $* ;}
+elif [ -d "/Applications/Visual Studio Code.app" -o -d "${HOME}/Applications/Visual Studio Code.app" ];
+then
+        code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+fi

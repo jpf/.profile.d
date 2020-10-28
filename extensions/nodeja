@@ -1,0 +1,5 @@
+# https://github.com/nodejs/node/blob/master/doc/guides/building-node-with-ninja.md
+alias configja='./configure --ninja'
+alias nodeja='ninja -C out/Release && ln -fs out/Release/node node'
+alias testja='tools/test.py --mode=release message parallel sequential -J'
+alias debugja='ninja -C out/Debug && ln -fs out/Debug/node node_g'

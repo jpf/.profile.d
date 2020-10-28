@@ -1,2 +1,3 @@
 # Note that tab completion doesn't work with CDPATH
-export CDPATH=.:~:~/work
+export CDPATH=
+unset CDPATH

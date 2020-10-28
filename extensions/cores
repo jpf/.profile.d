@@ -12,16 +12,24 @@ elif [ -x /usr/sbin/sysctl ];
 then
     # mac
     CORES=`sysctl -n hw.ncpu`
+elif [ -x /usr/sbin/psrinfo ];
+then
+    # solaris. Do this earlier, b/c Solaris also has mpstat
+    CORES=`/usr/sbin/psrinfo -p || echo 1`
 elif [ -x /usr/bin/mpstat ];
 then
     # aix
     CORES=`mpstat | sed -n 's%^.*lcpu=\([0-9]*\).*$%\1%p'`
 fi
 
-if [ "$CORES" -lt 1 ];
+if [ "x$CORES" = "x" ];
+then
+    CORES=1
+elif [ "$CORES" -lt 1 ];
 then
     CORES=1
 fi
 
+export CORES
 
 alias makep="make -j${CORES}"

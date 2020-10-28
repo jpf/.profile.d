@@ -1,0 +1,7 @@
+# http://brew.sh
+if command -v brew > /dev/null 2>&1; then
+  # from 'brew info byobu'
+  if command -v byobu > /dev/null 2>&1; then
+   export BYOBU_PREFIX=$(brew --prefix)
+  fi
+fi
