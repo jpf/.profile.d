@@ -1,0 +1,5 @@
+# if pyenv is from, say, homebrew, this may need to run after ./brew
+
+# TODO: Cache
+#command -v pyenv 2>/dev/null >/dev/null && eval "$(pyenv init -)"
+#command -v pyenv-virtualenv-init 2>/dev/null >/dev/null && eval "$(pyenv virtualenv-init -)"
